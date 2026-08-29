@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Lankan Housing Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #21281f;
+    --tea: #14514a;
+    --tea-dark: #0c3833;
+    --sand: #f4efe2;
+    --sand-deep: #e8dfc8;
+    --spice: #c17a2e;
+    --spice-dark: #9a5f20;
+    --gold: #d9a441;
+    --card: #fffdf7;
+    --line: #d9d0b8;
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(20, 81, 74, 0.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(217,164,65,0.10), transparent 45%),
+      var(--sand);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .masthead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--tea);
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--spice-dark);
+    margin: 0 0 8px;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 0;
+    color: var(--tea-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    max-width: 240px;
+    font-size: 13px;
+    color: #5c6b58;
+    text-align: right;
+    margin: 0;
+  }
+
+  .search-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .search-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--spice) 0 18px,
+      var(--gold) 18px 36px
+    );
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 20px;
+    align-items: end;
+  }
+
+  @media (max-width: 640px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--tea-dark);
+    margin-bottom: 8px;
+  }
+
+  select, input[type="text"], .form-control, .form-select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  select:focus, input:focus {
+    outline: none;
+    border-color: var(--tea);
+    box-shadow: 0 0 0 3px rgba(20, 81, 74, 0.12);
+  }
+
+  .btn-search {
+    padding: 11px 28px;
+    background: var(--tea);
+    color: var(--sand);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+    white-space: nowrap;
+  }
+
+  .btn-search:hover { background: var(--tea-dark); }
+  .btn-search:active { transform: translateY(1px); }
+  .btn-search:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  .best-pick {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, var(--gold), var(--spice));
+    color: #2a1a05;
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .best-pick .mark {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .best-pick .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .best-pick .detail {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .results-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--spice-dark);
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .results-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .listing-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  .listing-table th {
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6b7368;
+    font-weight: 500;
+    padding: 0 16px 4px;
+  }
+
+  .listing-table tr.row {
+    background: var(--card);
+    box-shadow: var(--shadow);
+  }
+
+  .listing-table tr.row.top {
+    background: #fff8ea;
+    box-shadow: 0 6px 20px rgba(217, 164, 65, 0.25);
+    outline: 1.5px solid var(--gold);
+  }
+
+  .listing-table td {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .listing-table td:first-child {
+    border-left: 1px solid var(--line);
+    border-radius: 8px 0 0 8px;
+  }
+
+  .listing-table td:last-child {
+    border-right: 1px solid var(--line);
+    border-radius: 0 8px 8px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--tea-dark);
+  }
+
+  .tenant-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--sand-deep);
+    color: var(--tea-dark);
+  }
+
+  .graph-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    padding: 13px 24px;
+    background: transparent;
+    color: var(--tea-dark);
+    border: 1.5px solid var(--tea);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .graph-link:hover { background: var(--tea); color: var(--sand); }
+  .graph-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div>
+      <p class="eyebrow">Housing &amp; Rental Matching</p>
+      <h1>Find your next home in Sri Lanka</h1>
+    </div>
+    <p class="tagline">Matched by tenant type, city, and fit score.</p>
+  </div>
+
+  <form method="post" class="search-card">
+    <div class="field-row">
+      <div>
+        <label for="tenant_type">Tenant type</label>
+        <select id="tenant_type" name="tenant_type">
+          <option value="">Any</option>
+          <option>Family</option>
+          <option>Student</option>
+          <option>Professional</option>
+        </select>
+      </div>
+      <div>
+        <label for="city">City</label>
+        <input id="city" type="text" name="city" placeholder="Colombo">
+      </div>
+      <div>
+        <button class="btn-search" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+
+  {% if best %}
+  <div class="best-pick">
+    <span class="mark">⭐</span>
+    <div>
+      <span class="label">Best choice</span>
+      <span class="detail">{{ best.property }} — {{ best.city }}</span>
+    </div>
+  </div>
+  {% endif %}
+
+  <p class="results-heading">Matches</p>
+
+  <table class="listing-table">
+    <tr>
+      <th>Tenant</th>
+      <th>Property</th>
+      <th>City</th>
+      <th>Score</th>
+    </tr>
+    {% for r in results %}
+    <tr class="row {% if loop.index0 == 0 %}top{% endif %}">
+      <td><span class="tenant-tag">{{ r.tenant }}</span></td>
+      <td>{{ r.property }}</td>
+      <td>{{ r.city }}</td>
+      <td>{{ r.score }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <a href="/graph" class="graph-link">View knowledge graph →</a>
+
+</div>
+</body>
+</html>
