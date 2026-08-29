@@ -1,0 +1,250 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 750px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "gray", "id": "DivisionalSecretariat", "label": "DivisionalSecretariat", "shape": "dot"}, {"color": "gray", "id": "Location", "label": "Location", "shape": "dot"}, {"color": "green", "id": "House", "label": "House", "shape": "dot"}, {"color": "gray", "id": "Property", "label": "Property", "shape": "dot"}, {"color": "gray", "id": "pays", "label": "pays", "shape": "dot"}, {"color": "gray", "id": "Tenant", "label": "Tenant", "shape": "dot"}, {"color": "gray", "id": "BoardingPlace", "label": "BoardingPlace", "shape": "dot"}, {"color": "gray", "id": "CEB_Electricity", "label": "CEB_Electricity", "shape": "dot"}, {"color": "gray", "id": "ElectricityService", "label": "ElectricityService", "shape": "dot"}, {"color": "gray", "id": "monthlyRent", "label": "monthlyRent", "shape": "dot"}, {"color": "gray", "id": "Lease", "label": "Lease", "shape": "dot"}, {"color": "green", "id": "House001", "label": "House001", "shape": "dot"}, {"color": "orange", "id": "Colombo", "label": "Colombo", "shape": "dot"}, {"color": "gray", "id": "Class", "label": "Class", "shape": "dot"}, {"color": "gray", "id": "WaterBoard_Service", "label": "WaterBoard_Service", "shape": "dot"}, {"color": "gray", "id": "NamedIndividual", "label": "NamedIndividual", "shape": "dot"}, {"color": "gray", "id": "Lease_Galle_001", "label": "Lease_Galle_001", "shape": "dot"}, {"color": "green", "id": "Room_Galle_Student_001", "label": "Room_Galle_Student_001", "shape": "dot"}, {"color": "gray", "id": "Delgoda", "label": "Delgoda", "shape": "dot"}, {"color": "gray", "id": "UtilityService", "label": "UtilityService", "shape": "dot"}, {"color": "orange", "id": "Galle", "label": "Galle", "shape": "dot"}, {"color": "gray", "id": "Landlord_MrsPerera", "label": "Landlord_MrsPerera", "shape": "dot"}, {"color": "green", "id": "Apartment_Colombo_001", "label": "Apartment_Colombo_001", "shape": "dot"}, {"color": "gray", "id": "Weliweriya", "label": "Weliweriya", "shape": "dot"}, {"color": "gray", "id": "GramaNiladhariDivision", "label": "GramaNiladhariDivision", "shape": "dot"}, {"color": "gray", "id": "LeaseRenewal", "label": "LeaseRenewal", "shape": "dot"}, {"color": "gray", "id": "District", "label": "District", "shape": "dot"}, {"color": "gray", "id": "ColomboDistrict", "label": "ColomboDistrict", "shape": "dot"}, {"color": "gray", "id": "Gampaha", "label": "Gampaha", "shape": "dot"}, {"color": "gray", "id": "City", "label": "City", "shape": "dot"}, {"color": "blue", "id": "FamilyTenant_Perera", "label": "FamilyTenant_Perera", "shape": "dot"}, {"color": "green", "id": "hasRoom", "label": "hasRoom", "shape": "dot"}, {"color": "gray", "id": "propertySize", "label": "propertySize", "shape": "dot"}, {"color": "gray", "id": "Lease_002", "label": "Lease_002", "shape": "dot"}, {"color": "gray", "id": "ShortTermLease", "label": "ShortTermLease", "shape": "dot"}, {"color": "gray", "id": "PropertyManager", "label": "PropertyManager", "shape": "dot"}, {"color": "gray", "id": "Lease_001", "label": "Lease_001", "shape": "dot"}, {"color": "gray", "id": "leaseFor", "label": "leaseFor", "shape": "dot"}, {"color": "gray", "id": "WaterService", "label": "WaterService", "shape": "dot"}, {"color": "green", "id": "Room_Kandy_Student_001", "label": "Room_Kandy_Student_001", "shape": "dot"}, {"color": "gray", "id": "WorkingTenant_Pavithra", "label": "WorkingTenant_Pavithra", "shape": "dot"}, {"color": "blue", "id": "WorkingProfessionalTenant", "label": "WorkingProfessionalTenant", "shape": "dot"}, {"color": "gray", "id": "Landlord_MrFernando", "label": "Landlord_MrFernando", "shape": "dot"}, {"color": "gray", "id": "Landlord", "label": "Landlord", "shape": "dot"}, {"color": "gray", "id": "JaffnaDistrict", "label": "JaffnaDistrict", "shape": "dot"}, {"color": "green", "id": "House_Galle_001", "label": "House_Galle_001", "shape": "dot"}, {"color": "gray", "id": "Negombo", "label": "Negombo", "shape": "dot"}, {"color": "green", "id": "House_Kandy_001", "label": "House_Kandy_001", "shape": "dot"}, {"color": "gray", "id": "LongTermLease", "label": "LongTermLease", "shape": "dot"}, {"color": "gray", "id": "hasLease", "label": "hasLease", "shape": "dot"}, {"color": "gray", "id": "ObjectProperty", "label": "ObjectProperty", "shape": "dot"}, {"color": "gray", "id": "depositAmount", "label": "depositAmount", "shape": "dot"}, {"color": "gray", "id": "SecurityDeposit", "label": "SecurityDeposit", "shape": "dot"}, {"color": "green", "id": "SingleRoom", "label": "SingleRoom", "shape": "dot"}, {"color": "green", "id": "Apartment_Kandy_001", "label": "Apartment_Kandy_001", "shape": "dot"}, {"color": "green", "id": "Apartment", "label": "Apartment", "shape": "dot"}, {"color": "gray", "id": "Naranwala", "label": "Naranwala", "shape": "dot"}, {"color": "gray", "id": "usesService", "label": "usesService", "shape": "dot"}, {"color": "gray", "id": "RentalAgreement", "label": "RentalAgreement", "shape": "dot"}, {"color": "gray", "id": "leaseDurationMonths", "label": "leaseDurationMonths", "shape": "dot"}, {"color": "gray", "id": "Tenant001", "label": "Tenant001", "shape": "dot"}, {"color": "blue", "id": "StudentTenant", "label": "StudentTenant", "shape": "dot"}, {"color": "green", "id": "Apartment001", "label": "Apartment001", "shape": "dot"}, {"color": "gray", "id": "ownedBy", "label": "ownedBy", "shape": "dot"}, {"color": "gray", "id": "http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental", "label": "http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental", "shape": "dot"}, {"color": "gray", "id": "This ontology represents housing and rental management in Sri Lanka,\nincluding tenants, landlords, properties, leases, and payments.", "label": "This ontology represents housing and rental management in Sri Lanka,\nincluding tenants, landlords, properties, leases, and payments.", "shape": "dot"}, {"color": "gray", "id": "Kurunegala", "label": "Kurunegala", "shape": "dot"}, {"color": "blue", "id": "FamilyTenant_Silva", "label": "FamilyTenant_Silva", "shape": "dot"}, {"color": "gray", "id": "LateFee", "label": "LateFee", "shape": "dot"}, {"color": "green", "id": "Room", "label": "Room", "shape": "dot"}, {"color": "gray", "id": "Jaffna", "label": "Jaffna", "shape": "dot"}, {"color": "green", "id": "House_Colombo_001", "label": "House_Colombo_001", "shape": "dot"}, {"color": "green", "id": "Apartment_Colombo_002", "label": "Apartment_Colombo_002", "shape": "dot"}, {"color": "gray", "id": "submits", "label": "submits", "shape": "dot"}, {"color": "orange", "id": "Kandy", "label": "Kandy", "shape": "dot"}, {"color": "blue", "id": "FamilyTenant", "label": "FamilyTenant", "shape": "dot"}, {"color": "gray", "id": "InternetService", "label": "InternetService", "shape": "dot"}, {"color": "gray", "id": "N25451855348c4cec8c1a4210ae14d062", "label": "N25451855348c4cec8c1a4210ae14d062", "shape": "dot"}, {"color": "gray", "id": "KurunegalaDistrict", "label": "KurunegalaDistrict", "shape": "dot"}, {"color": "gray", "id": "Person", "label": "Person", "shape": "dot"}, {"color": "gray", "id": "GalleDistrict", "label": "GalleDistrict", "shape": "dot"}, {"color": "gray", "id": "locatedIn", "label": "locatedIn", "shape": "dot"}, {"color": "gray", "id": "FunctionalProperty", "label": "FunctionalProperty", "shape": "dot"}, {"color": "gray", "id": "float", "label": "float", "shape": "dot"}, {"color": "gray", "id": "cityName", "label": "cityName", "shape": "dot"}, {"color": "gray", "id": "KandyDistrict", "label": "KandyDistrict", "shape": "dot"}, {"color": "blue", "id": "StudentTenant_Suresh", "label": "StudentTenant_Suresh", "shape": "dot"}, {"color": "green", "id": "Room_Colombo_Student_001", "label": "Room_Colombo_Student_001", "shape": "dot"}, {"color": "gray", "id": "Dialog_4G", "label": "Dialog_4G", "shape": "dot"}, {"color": "green", "id": "SharedRoom", "label": "SharedRoom", "shape": "dot"}, {"color": "gray", "id": "Payment", "label": "Payment", "shape": "dot"}, {"color": "gray", "id": "SLT_Fiber", "label": "SLT_Fiber", "shape": "dot"}, {"color": "gray", "id": "Lease_Colombo_001", "label": "Lease_Colombo_001", "shape": "dot"}, {"color": "gray", "id": "Restriction", "label": "Restriction", "shape": "dot"}, {"color": "gray", "id": "hasFacility", "label": "hasFacility", "shape": "dot"}, {"color": "gray", "id": "Lease_Kandy_001", "label": "Lease_Kandy_001", "shape": "dot"}, {"color": "gray", "id": "Tenant002", "label": "Tenant002", "shape": "dot"}, {"color": "gray", "id": "Landlord_MrWijesinghe", "label": "Landlord_MrWijesinghe", "shape": "dot"}, {"color": "gray", "id": "Landlord001", "label": "Landlord001", "shape": "dot"}, {"color": "gray", "id": "WorkingTenant_Ashan", "label": "WorkingTenant_Ashan", "shape": "dot"}, {"color": "blue", "id": "StudentTenant_Nimal", "label": "StudentTenant_Nimal", "shape": "dot"}, {"color": "gray", "id": "rents", "label": "rents", "shape": "dot"}, {"color": "gray", "id": "decimal", "label": "decimal", "shape": "dot"}, {"color": "gray", "id": "MaintenanceRequest", "label": "MaintenanceRequest", "shape": "dot"}, {"color": "gray", "id": "WorkingTenant_Dilshan", "label": "WorkingTenant_Dilshan", "shape": "dot"}, {"color": "gray", "id": "Boarding_Kaduwela", "label": "Boarding_Kaduwela", "shape": "dot"}, {"color": "gray", "id": "Nimal_Perera", "label": "Nimal_Perera", "shape": "dot"}, {"color": "gray", "id": "DatatypeProperty", "label": "DatatypeProperty", "shape": "dot"}, {"color": "gray", "id": "string", "label": "string", "shape": "dot"}, {"color": "gray", "id": "integer", "label": "integer", "shape": "dot"}, {"color": "gray", "id": "Annex", "label": "Annex", "shape": "dot"}, {"color": "gray", "id": "ForeignTenant", "label": "ForeignTenant", "shape": "dot"}, {"color": "gray", "id": "Ontology", "label": "Ontology", "shape": "dot"}, {"color": "blue", "id": "StudentTenant_Kamala", "label": "StudentTenant_Kamala", "shape": "dot"}, {"color": "gray", "id": "Facility", "label": "Facility", "shape": "dot"}, {"color": "gray", "id": "RentPayment", "label": "RentPayment", "shape": "dot"}, {"color": "gray", "id": "LongTermTenant", "label": "LongTermTenant", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "DivisionalSecretariat", "label": "subClassOf", "to": "Location"}, {"arrows": "to", "from": "House", "label": "subClassOf", "to": "Property"}, {"arrows": "to", "from": "pays", "label": "domain", "to": "Tenant"}, {"arrows": "to", "from": "BoardingPlace", "label": "subClassOf", "to": "Property"}, {"arrows": "to", "from": "CEB_Electricity", "label": "type", "to": "ElectricityService"}, {"arrows": "to", "from": "monthlyRent", "label": "domain", "to": "Lease"}, {"arrows": "to", "from": "House001", "label": "locatedIn", "to": "Colombo"}, {"arrows": "to", "from": "BoardingPlace", "label": "type", "to": "Class"}, {"arrows": "to", "from": "WaterBoard_Service", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Lease_Galle_001", "label": "leaseFor", "to": "Room_Galle_Student_001"}, {"arrows": "to", "from": "Delgoda", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "ElectricityService", "label": "subClassOf", "to": "UtilityService"}, {"arrows": "to", "from": "House", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Room_Galle_Student_001", "label": "locatedIn", "to": "Galle"}, {"arrows": "to", "from": "Landlord_MrsPerera", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Apartment_Colombo_001", "label": "ownedBy", "to": "Landlord_MrsPerera"}, {"arrows": "to", "from": "Weliweriya", "label": "type", "to": "GramaNiladhariDivision"}, {"arrows": "to", "from": "LeaseRenewal", "label": "subClassOf", "to": "Lease"}, {"arrows": "to", "from": "District", "label": "subClassOf", "to": "Location"}, {"arrows": "to", "from": "GramaNiladhariDivision", "label": "type", "to": "Class"}, {"arrows": "to", "from": "ColomboDistrict", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Gampaha", "label": "type", "to": "City"}, {"arrows": "to", "from": "DivisionalSecretariat", "label": "type", "to": "Class"}, {"arrows": "to", "from": "FamilyTenant_Perera", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "hasRoom", "label": "domain", "to": "Property"}, {"arrows": "to", "from": "Lease", "label": "type", "to": "Class"}, {"arrows": "to", "from": "propertySize", "label": "domain", "to": "Property"}, {"arrows": "to", "from": "Lease_002", "label": "type", "to": "ShortTermLease"}, {"arrows": "to", "from": "House001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "PropertyManager", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Lease_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "leaseFor", "label": "range", "to": "Property"}, {"arrows": "to", "from": "City", "label": "type", "to": "Class"}, {"arrows": "to", "from": "WaterService", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Room_Kandy_Student_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "WorkingTenant_Pavithra", "label": "type", "to": "WorkingProfessionalTenant"}, {"arrows": "to", "from": "Landlord_MrFernando", "label": "type", "to": "Landlord"}, {"arrows": "to", "from": "JaffnaDistrict", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "House_Galle_001", "label": "type", "to": "House"}, {"arrows": "to", "from": "Negombo", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "House_Kandy_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "LongTermLease", "label": "type", "to": "Class"}, {"arrows": "to", "from": "hasLease", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "depositAmount", "label": "domain", "to": "SecurityDeposit"}, {"arrows": "to", "from": "SingleRoom", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Apartment_Kandy_001", "label": "type", "to": "Apartment"}, {"arrows": "to", "from": "Naranwala", "label": "type", "to": "GramaNiladhariDivision"}, {"arrows": "to", "from": "usesService", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "RentalAgreement", "label": "type", "to": "Class"}, {"arrows": "to", "from": "leaseDurationMonths", "label": "domain", "to": "Lease"}, {"arrows": "to", "from": "Tenant001", "label": "type", "to": "StudentTenant"}, {"arrows": "to", "from": "Apartment001", "label": "type", "to": "Apartment"}, {"arrows": "to", "from": "ownedBy", "label": "range", "to": "Landlord"}, {"arrows": "to", "from": "Apartment_Colombo_001", "label": "locatedIn", "to": "Colombo"}, {"arrows": "to", "from": "http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental", "label": "comment", "to": "This ontology represents housing and rental management in Sri Lanka,\nincluding tenants, landlords, properties, leases, and payments."}, {"arrows": "to", "from": "Kurunegala", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "FamilyTenant_Silva", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "LateFee", "label": "type", "to": "Class"}, {"arrows": "to", "from": "SingleRoom", "label": "subClassOf", "to": "Room"}, {"arrows": "to", "from": "Jaffna", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "House_Colombo_001", "label": "type", "to": "House"}, {"arrows": "to", "from": "Negombo", "label": "type", "to": "City"}, {"arrows": "to", "from": "ColomboDistrict", "label": "type", "to": "District"}, {"arrows": "to", "from": "Apartment_Colombo_002", "label": "type", "to": "Apartment"}, {"arrows": "to", "from": "Lease_Galle_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "submits", "label": "domain", "to": "Tenant"}, {"arrows": "to", "from": "Room_Kandy_Student_001", "label": "locatedIn", "to": "Kandy"}, {"arrows": "to", "from": "FamilyTenant", "label": "type", "to": "Class"}, {"arrows": "to", "from": "InternetService", "label": "subClassOf", "to": "UtilityService"}, {"arrows": "to", "from": "N25451855348c4cec8c1a4210ae14d062", "label": "onProperty", "to": "hasLease"}, {"arrows": "to", "from": "KurunegalaDistrict", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "PropertyManager", "label": "subClassOf", "to": "Person"}, {"arrows": "to", "from": "FamilyTenant", "label": "subClassOf", "to": "Tenant"}, {"arrows": "to", "from": "Landlord_MrFernando", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Location", "label": "type", "to": "Class"}, {"arrows": "to", "from": "LongTermLease", "label": "subClassOf", "to": "Lease"}, {"arrows": "to", "from": "GalleDistrict", "label": "type", "to": "District"}, {"arrows": "to", "from": "Room", "label": "type", "to": "Class"}, {"arrows": "to", "from": "locatedIn", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "ownedBy", "label": "type", "to": "FunctionalProperty"}, {"arrows": "to", "from": "propertySize", "label": "range", "to": "float"}, {"arrows": "to", "from": "Kurunegala", "label": "type", "to": "City"}, {"arrows": "to", "from": "leaseFor", "label": "domain", "to": "Lease"}, {"arrows": "to", "from": "pays", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "hasRoom", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "cityName", "label": "domain", "to": "City"}, {"arrows": "to", "from": "Jaffna", "label": "type", "to": "City"}, {"arrows": "to", "from": "KandyDistrict", "label": "type", "to": "District"}, {"arrows": "to", "from": "RentalAgreement", "label": "subClassOf", "to": "Lease"}, {"arrows": "to", "from": "Apartment_Colombo_002", "label": "ownedBy", "to": "Landlord_MrsPerera"}, {"arrows": "to", "from": "Delgoda", "label": "type", "to": "GramaNiladhariDivision"}, {"arrows": "to", "from": "StudentTenant_Suresh", "label": "rents", "to": "Room_Galle_Student_001"}, {"arrows": "to", "from": "Colombo", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Room_Colombo_Student_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Room_Colombo_Student_001", "label": "type", "to": "Room"}, {"arrows": "to", "from": "Dialog_4G", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "House001", "label": "type", "to": "House"}, {"arrows": "to", "from": "SharedRoom", "label": "subClassOf", "to": "Room"}, {"arrows": "to", "from": "hasLease", "label": "range", "to": "Lease"}, {"arrows": "to", "from": "FamilyTenant_Perera", "label": "type", "to": "FamilyTenant"}, {"arrows": "to", "from": "pays", "label": "range", "to": "Payment"}, {"arrows": "to", "from": "SLT_Fiber", "label": "type", "to": "InternetService"}, {"arrows": "to", "from": "Landlord", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Tenant001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "House_Colombo_001", "label": "usesService", "to": "WaterBoard_Service"}, {"arrows": "to", "from": "Lease_Colombo_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "N25451855348c4cec8c1a4210ae14d062", "label": "type", "to": "Restriction"}, {"arrows": "to", "from": "StudentTenant", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Payment", "label": "type", "to": "Class"}, {"arrows": "to", "from": "WaterBoard_Service", "label": "type", "to": "WaterService"}, {"arrows": "to", "from": "StudentTenant", "label": "subClassOf", "to": "Tenant"}, {"arrows": "to", "from": "hasFacility", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "House_Kandy_001", "label": "type", "to": "House"}, {"arrows": "to", "from": "Lease_Kandy_001", "label": "leaseFor", "to": "House_Kandy_001"}, {"arrows": "to", "from": "Lease_Galle_001", "label": "type", "to": "RentalAgreement"}, {"arrows": "to", "from": "Tenant002", "label": "type", "to": "WorkingProfessionalTenant"}, {"arrows": "to", "from": "Landlord_MrWijesinghe", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "LateFee", "label": "subClassOf", "to": "Payment"}, {"arrows": "to", "from": "Apartment_Kandy_001", "label": "usesService", "to": "Dialog_4G"}, {"arrows": "to", "from": "ShortTermLease", "label": "subClassOf", "to": "Lease"}, {"arrows": "to", "from": "Landlord001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "WorkingTenant_Ashan", "label": "rents", "to": "Lease_Kandy_001"}, {"arrows": "to", "from": "ownedBy", "label": "domain", "to": "Property"}, {"arrows": "to", "from": "StudentTenant_Nimal", "label": "type", "to": "StudentTenant"}, {"arrows": "to", "from": "KurunegalaDistrict", "label": "type", "to": "District"}, {"arrows": "to", "from": "CEB_Electricity", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "rents", "label": "type", "to": "FunctionalProperty"}, {"arrows": "to", "from": "WorkingTenant_Ashan", "label": "type", "to": "WorkingProfessionalTenant"}, {"arrows": "to", "from": "Apartment", "label": "subClassOf", "to": "Property"}, {"arrows": "to", "from": "WorkingTenant_Pavithra", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Colombo", "label": "type", "to": "City"}, {"arrows": "to", "from": "Apartment", "label": "type", "to": "Class"}, {"arrows": "to", "from": "monthlyRent", "label": "range", "to": "decimal"}, {"arrows": "to", "from": "GalleDistrict", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "N25451855348c4cec8c1a4210ae14d062", "label": "someValuesFrom", "to": "LongTermLease"}, {"arrows": "to", "from": "District", "label": "type", "to": "Class"}, {"arrows": "to", "from": "WorkingTenant_Ashan", "label": "rents", "to": "House_Kandy_001"}, {"arrows": "to", "from": "WaterService", "label": "subClassOf", "to": "UtilityService"}, {"arrows": "to", "from": "MaintenanceRequest", "label": "type", "to": "Class"}, {"arrows": "to", "from": "UtilityService", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Landlord001", "label": "ownedBy", "to": "House001"}, {"arrows": "to", "from": "KandyDistrict", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Apartment_Colombo_002", "label": "locatedIn", "to": "Colombo"}, {"arrows": "to", "from": "rents", "label": "domain", "to": "Tenant"}, {"arrows": "to", "from": "Apartment_Kandy_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Dialog_4G", "label": "type", "to": "InternetService"}, {"arrows": "to", "from": "Lease_Kandy_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "WorkingTenant_Dilshan", "label": "type", "to": "WorkingProfessionalTenant"}, {"arrows": "to", "from": "Boarding_Kaduwela", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Lease_002", "label": "leaseFor", "to": "Apartment001"}, {"arrows": "to", "from": "Tenant001", "label": "rents", "to": "Lease_001"}, {"arrows": "to", "from": "Lease_001", "label": "type", "to": "LongTermLease"}, {"arrows": "to", "from": "StudentTenant_Suresh", "label": "rents", "to": "Lease_Galle_001"}, {"arrows": "to", "from": "depositAmount", "label": "range", "to": "decimal"}, {"arrows": "to", "from": "Apartment001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Nimal_Perera", "label": "type", "to": "StudentTenant"}, {"arrows": "to", "from": "Room_Galle_Student_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Room_Galle_Student_001", "label": "type", "to": "Room"}, {"arrows": "to", "from": "WorkingProfessionalTenant", "label": "type", "to": "Class"}, {"arrows": "to", "from": "monthlyRent", "label": "type", "to": "DatatypeProperty"}, {"arrows": "to", "from": "rents", "label": "range", "to": "Property"}, {"arrows": "to", "from": "submits", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "cityName", "label": "range", "to": "string"}, {"arrows": "to", "from": "hasRoom", "label": "range", "to": "Room"}, {"arrows": "to", "from": "Tenant", "label": "type", "to": "Class"}, {"arrows": "to", "from": "leaseDurationMonths", "label": "range", "to": "integer"}, {"arrows": "to", "from": "Apartment001", "label": "locatedIn", "to": "Colombo"}, {"arrows": "to", "from": "Apartment_Colombo_002", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "submits", "label": "range", "to": "MaintenanceRequest"}, {"arrows": "to", "from": "StudentTenant_Suresh", "label": "type", "to": "StudentTenant"}, {"arrows": "to", "from": "Room", "label": "subClassOf", "to": "Property"}, {"arrows": "to", "from": "House_Colombo_001", "label": "usesService", "to": "CEB_Electricity"}, {"arrows": "to", "from": "Annex", "label": "subClassOf", "to": "Property"}, {"arrows": "to", "from": "Apartment_Colombo_001", "label": "usesService", "to": "SLT_Fiber"}, {"arrows": "to", "from": "Landlord_MrWijesinghe", "label": "type", "to": "Landlord"}, {"arrows": "to", "from": "City", "label": "subClassOf", "to": "Location"}, {"arrows": "to", "from": "ForeignTenant", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Annex", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Property", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Landlord001", "label": "type", "to": "Landlord"}, {"arrows": "to", "from": "StudentTenant_Nimal", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "ForeignTenant", "label": "subClassOf", "to": "Tenant"}, {"arrows": "to", "from": "SecurityDeposit", "label": "type", "to": "Class"}, {"arrows": "to", "from": "StudentTenant_Nimal", "label": "rents", "to": "Lease_Colombo_001"}, {"arrows": "to", "from": "usesService", "label": "range", "to": "UtilityService"}, {"arrows": "to", "from": "cityName", "label": "type", "to": "DatatypeProperty"}, {"arrows": "to", "from": "Apartment_Colombo_001", "label": "leaseFor", "to": "Room_Galle_Student_001"}, {"arrows": "to", "from": "http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental", "label": "type", "to": "Ontology"}, {"arrows": "to", "from": "WorkingProfessionalTenant", "label": "subClassOf", "to": "Tenant"}, {"arrows": "to", "from": "StudentTenant_Kamala", "label": "type", "to": "StudentTenant"}, {"arrows": "to", "from": "Weliweriya", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "ownedBy", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "Apartment_Kandy_001", "label": "locatedIn", "to": "Kandy"}, {"arrows": "to", "from": "Facility", "label": "type", "to": "Class"}, {"arrows": "to", "from": "RentPayment", "label": "type", "to": "Class"}, {"arrows": "to", "from": "ElectricityService", "label": "type", "to": "Class"}, {"arrows": "to", "from": "LongTermTenant", "label": "equivalentClass", "to": "N25451855348c4cec8c1a4210ae14d062"}, {"arrows": "to", "from": "Person", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Room_Kandy_Student_001", "label": "type", "to": "Room"}, {"arrows": "to", "from": "hasLease", "label": "type", "to": "FunctionalProperty"}, {"arrows": "to", "from": "Kandy", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "InternetService", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Room_Colombo_Student_001", "label": "locatedIn", "to": "Colombo"}, {"arrows": "to", "from": "depositAmount", "label": "type", "to": "DatatypeProperty"}, {"arrows": "to", "from": "Lease_Kandy_001", "label": "type", "to": "ShortTermLease"}, {"arrows": "to", "from": "Nimal_Perera", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "LongTermTenant", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Tenant002", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "LongTermTenant", "label": "equivalentClass", "to": "Tenant"}, {"arrows": "to", "from": "hasFacility", "label": "domain", "to": "Property"}, {"arrows": "to", "from": "leaseDurationMonths", "label": "type", "to": "DatatypeProperty"}, {"arrows": "to", "from": "LongTermTenant", "label": "subClassOf", "to": "Tenant"}, {"arrows": "to", "from": "House_Kandy_001", "label": "locatedIn", "to": "Kandy"}, {"arrows": "to", "from": "Apartment_Kandy_001", "label": "ownedBy", "to": "Landlord_MrWijesinghe"}, {"arrows": "to", "from": "Lease_001", "label": "leaseFor", "to": "House001"}, {"arrows": "to", "from": "StudentTenant_Suresh", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "House_Colombo_001", "label": "ownedBy", "to": "Landlord_MrFernando"}, {"arrows": "to", "from": "House_Galle_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Landlord", "label": "subClassOf", "to": "Person"}, {"arrows": "to", "from": "WorkingTenant_Ashan", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Naranwala", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Lease_002", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Lease_Colombo_001", "label": "type", "to": "LongTermLease"}, {"arrows": "to", "from": "House_Colombo_001", "label": "locatedIn", "to": "Colombo"}, {"arrows": "to", "from": "SLT_Fiber", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Kandy", "label": "type", "to": "City"}, {"arrows": "to", "from": "Galle", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "leaseFor", "label": "type", "to": "FunctionalProperty"}, {"arrows": "to", "from": "Landlord_MrsPerera", "label": "type", "to": "Landlord"}, {"arrows": "to", "from": "Boarding_Kaduwela", "label": "type", "to": "BoardingPlace"}, {"arrows": "to", "from": "rents", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "propertySize", "label": "type", "to": "DatatypeProperty"}, {"arrows": "to", "from": "StudentTenant_Nimal", "label": "rents", "to": "Apartment_Colombo_001"}, {"arrows": "to", "from": "LeaseRenewal", "label": "type", "to": "Class"}, {"arrows": "to", "from": "SecurityDeposit", "label": "subClassOf", "to": "Payment"}, {"arrows": "to", "from": "House_Kandy_001", "label": "ownedBy", "to": "Landlord_MrWijesinghe"}, {"arrows": "to", "from": "leaseFor", "label": "type", "to": "ObjectProperty"}, {"arrows": "to", "from": "hasFacility", "label": "range", "to": "Facility"}, {"arrows": "to", "from": "StudentTenant_Kamala", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "WorkingTenant_Dilshan", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "FamilyTenant_Silva", "label": "type", "to": "FamilyTenant"}, {"arrows": "to", "from": "locatedIn", "label": "type", "to": "FunctionalProperty"}, {"arrows": "to", "from": "hasLease", "label": "domain", "to": "Tenant"}, {"arrows": "to", "from": "usesService", "label": "domain", "to": "Property"}, {"arrows": "to", "from": "ShortTermLease", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Apartment_Colombo_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "Apartment_Colombo_001", "label": "type", "to": "Apartment"}, {"arrows": "to", "from": "JaffnaDistrict", "label": "type", "to": "District"}, {"arrows": "to", "from": "SharedRoom", "label": "type", "to": "Class"}, {"arrows": "to", "from": "Lease_Colombo_001", "label": "leaseFor", "to": "Apartment_Colombo_001"}, {"arrows": "to", "from": "House_Colombo_001", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "RentPayment", "label": "subClassOf", "to": "Payment"}, {"arrows": "to", "from": "locatedIn", "label": "domain", "to": "Property"}, {"arrows": "to", "from": "Tenant", "label": "subClassOf", "to": "Person"}, {"arrows": "to", "from": "Gampaha", "label": "type", "to": "NamedIndividual"}, {"arrows": "to", "from": "locatedIn", "label": "range", "to": "Location"}, {"arrows": "to", "from": "Galle", "label": "type", "to": "City"}, {"arrows": "to", "from": "GramaNiladhariDivision", "label": "subClassOf", "to": "Location"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
