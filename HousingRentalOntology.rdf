@@ -1,0 +1,932 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental/"
+     xml:base="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sri-lanka-housing-rental="http://www.semanticweb.org/nethmi/ontologies/2026/sri-lanka-housing-rental#"
+     xmlns:sri-lanka-housing-rental1="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental">
+        <rdfs:comment>This ontology represents housing and rental management in Sri Lanka,
+including tenants, landlords, properties, leases, and payments.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasFacility -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasFacility">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Facility"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasLease -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasLease">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasRoom -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasRoom">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#leaseFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#leaseFor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#locatedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#locatedIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ownedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ownedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#pays -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#pays">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Payment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#rents -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#rents">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#submits -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#submits">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#MaintenanceRequest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#usesService -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#usesService">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#UtilityService"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#cityName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#cityName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#depositAmount -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#depositAmount">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SecurityDeposit"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#leaseDurationMonths -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#leaseDurationMonths">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#monthlyRent -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#monthlyRent">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#propertySize -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#propertySize">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Annex -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Annex">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#BoardingPlace -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#BoardingPlace">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#DivisionalSecretariat -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#DivisionalSecretariat">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ElectricityService -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ElectricityService">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#UtilityService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Facility -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Facility"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ForeignTenant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ForeignTenant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GramaNiladhariDivision -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GramaNiladhariDivision">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#InternetService -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#InternetService">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#UtilityService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LateFee -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LateFee">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Payment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LeaseRenewal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LeaseRenewal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Location"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermLease -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermLease">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermTenant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermTenant">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#hasLease"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermLease"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#MaintenanceRequest -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#MaintenanceRequest"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Payment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Payment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#PropertyManager -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#PropertyManager">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#RentPayment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#RentPayment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Payment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#RentalAgreement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#RentalAgreement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SecurityDeposit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SecurityDeposit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Payment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SharedRoom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SharedRoom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ShortTermLease -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ShortTermLease">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SingleRoom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SingleRoom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#UtilityService -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#UtilityService"/>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WaterService -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WaterService">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#UtilityService"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingProfessionalTenant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingProfessionalTenant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Colombo_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Colombo_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment"/>
+        <sri-lanka-housing-rental1:leaseFor rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Galle_Student_001"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo"/>
+        <sri-lanka-housing-rental1:ownedBy rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrsPerera"/>
+        <sri-lanka-housing-rental1:usesService rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SLT_Fiber"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Colombo_002 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Colombo_002">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo"/>
+        <sri-lanka-housing-rental1:ownedBy rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrsPerera"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Kandy_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Kandy_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kandy"/>
+        <sri-lanka-housing-rental1:ownedBy rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrWijesinghe"/>
+        <sri-lanka-housing-rental1:usesService rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Dialog_4G"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Boarding_Kaduwela -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Boarding_Kaduwela">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#BoardingPlace"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#CEB_Electricity -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#CEB_Electricity">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ElectricityService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ColomboDistrict -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ColomboDistrict">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Delgoda -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Delgoda">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GramaNiladhariDivision"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Dialog_4G -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Dialog_4G">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#InternetService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant_Perera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant_Perera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant_Silva -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant_Silva">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#FamilyTenant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Galle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Galle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GalleDistrict -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GalleDistrict">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Gampaha -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Gampaha">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Colombo_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Colombo_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo"/>
+        <sri-lanka-housing-rental1:ownedBy rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrFernando"/>
+        <sri-lanka-housing-rental1:usesService rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#CEB_Electricity"/>
+        <sri-lanka-housing-rental1:usesService rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WaterBoard_Service"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Galle_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Galle_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Kandy_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Kandy_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kandy"/>
+        <sri-lanka-housing-rental1:ownedBy rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrWijesinghe"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Jaffna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Jaffna">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#JaffnaDistrict -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#JaffnaDistrict">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kandy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kandy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#KandyDistrict -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#KandyDistrict">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kurunegala -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kurunegala">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#KurunegalaDistrict -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#KurunegalaDistrict">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#District"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord"/>
+        <sri-lanka-housing-rental1:ownedBy rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrFernando -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrFernando">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrWijesinghe -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrWijesinghe">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrsPerera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord_MrsPerera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Landlord"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermLease"/>
+        <sri-lanka-housing-rental1:leaseFor rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_002 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_002">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ShortTermLease"/>
+        <sri-lanka-housing-rental1:leaseFor rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Colombo_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Colombo_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#LongTermLease"/>
+        <sri-lanka-housing-rental1:leaseFor rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Colombo_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Galle_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Galle_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#RentalAgreement"/>
+        <sri-lanka-housing-rental1:leaseFor rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Galle_Student_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Kandy_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Kandy_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#ShortTermLease"/>
+        <sri-lanka-housing-rental1:leaseFor rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Kandy_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Naranwala -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Naranwala">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GramaNiladhariDivision"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Negombo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Negombo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#City"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Nimal_Perera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Nimal_Perera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Colombo_Student_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Colombo_Student_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Colombo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Galle_Student_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Galle_Student_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Galle"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Kandy_Student_001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Kandy_Student_001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room"/>
+        <sri-lanka-housing-rental1:locatedIn rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Kandy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SLT_Fiber -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#SLT_Fiber">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#InternetService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant_Kamala -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant_Kamala">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant_Nimal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant_Nimal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Apartment_Colombo_001"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Colombo_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant_Suresh -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant_Suresh">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Galle_001"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Room_Galle_Student_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant001">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#StudentTenant"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant002 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Tenant002">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingProfessionalTenant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WaterBoard_Service -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WaterBoard_Service">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WaterService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Weliweriya -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Weliweriya">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#GramaNiladhariDivision"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingTenant_Ashan -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingTenant_Ashan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingProfessionalTenant"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#House_Kandy_001"/>
+        <sri-lanka-housing-rental1:rents rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#Lease_Kandy_001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingTenant_Dilshan -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingTenant_Dilshan">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingProfessionalTenant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingTenant_Pavithra -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingTenant_Pavithra">
+        <rdf:type rdf:resource="http://www.semanticweb.org/sivasuthan/ontologies/2026/sri-lanka-housing-rental#WorkingProfessionalTenant"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
